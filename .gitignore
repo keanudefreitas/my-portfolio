@@ -1,0 +1,4 @@
+node_modules/
+inquiries.db
+.env
+package-lock.json

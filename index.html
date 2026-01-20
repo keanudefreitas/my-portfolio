@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keanu de Freitas - Web Developer</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    /* Typography */
+    h2, h3 {
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 1.8em;
+      border-bottom: 3px solid #00d4ff;
+      padding-bottom: 0.5em;
+    }
+
+    h3 {
+      font-size: 1.3em;
+      color: #00d4ff;
+    }
+
+    p {
+      margin-bottom: 1em;
+      font-size: 1em;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a7b 100%);
+      color: white;
+      padding: 2em 1em;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .name {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 0.3em;
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-size: 1.1em;
+      color: #00d4ff;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #1a1a1a;
+      padding: 1em 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 1em 1.5em;
+      color: #e0e0e0;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    nav a:hover {
+      background-color: #2d2d2d;
+      color: #00d4ff;
+      border-bottom-color: #00d4ff;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 0 1.5em;
+    }
+
+    section {
+      margin-bottom: 3em;
+    }
+
+    /* Skills List */
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding: 0.7em 0 0.7em 2em;
+      position: relative;
+    }
+
+    ul li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #00d4ff;
+      font-size: 1.2em;
+    }
+
+    /* Projects */
+    article {
+      background-color: #2d2d2d;
+      border-left: 4px solid #00d4ff;
+      padding: 1.5em;
+      margin-bottom: 1.5em;
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    article:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+      color: #e0e0e0;
+      font-weight: 500;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75em;
+      border: 1px solid #00d4ff;
+      border-radius: 4px;
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      font-family: inherit;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #00f0ff;
+      box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+      background-color: #2d2d2d;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      background-color: #00d4ff;
+      color: #1a1a1a;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00f0ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .message {
+      margin-top: 1.5em;
+      padding: 1em;
+      border-radius: 4px;
+      display: none;
+      font-weight: 500;
+      border-left: 4px solid #00d4ff;
+    }
+
+    .message.success {
+      background-color: rgba(0, 212, 255, 0.1);
+      color: #00d4ff;
+      border-left-color: #00d4ff;
+      display: block;
+    }
+
+    .message.error {
+      background-color: rgba(255, 100, 100, 0.1);
+      color: #ff6464;
+      border-left-color: #ff6464;
+      display: block;
+    }
+
+    .loading {
+      display: none;
+      text-align: center;
+      color: #00d4ff;
+      margin-top: 10px;
+    }
+
+    .loading.active {
+      display: block;
+    }
+
+    .inquiries-section {
+      margin-top: 3em;
+    }
+
+    .inquiry-item {
+      background-color: #2d2d2d;
+      border-left: 4px solid #00d4ff;
+      padding: 1.5em;
+      margin-bottom: 1em;
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .inquiry-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+    }
+
+    .inquiry-item h4 {
+      color: #00d4ff;
+      margin-bottom: 0.8em;
+    }
+
+    .inquiry-item p {
+      color: #e0e0e0;
+      font-size: 0.95em;
+      margin-bottom: 0.5em;
+    }
+
+    .inquiry-item .timestamp {
+      color: #999;
+      font-size: 0.85em;
+      margin-top: 0.8em;
+    }
+
+    /* Links */
+    a {
+      color: #00d4ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #00f0ff;
+      text-decoration: underline;
+    }
+
+    /* Contact Links */
+    section#contact p {
+      margin-bottom: 0.8em;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a1a1a;
+      text-align: center;
+      padding: 2em;
+      margin-top: 3em;
+      border-top: 1px solid #3d3d3d;
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .name {
+        font-size: 2em;
+      }
+
+      .tagline {
+        font-size: 0.95em;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav a {
+        text-align: center;
+        border-bottom: none;
+        border-left: 3px solid transparent;
+      }
+
+      nav a:hover {
+        border-left-color: #00d4ff;
+      }
+
+      main {
+        margin: 1.5em auto;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="name">Keanu WebSolutions</div>
+    <div class="lines">Web Development</div>
+  </header>
+
+  <nav style="color: white">
+    <ul>
+      <li><a href="#about" style="color: white">About Me</a></li>
+      <li><a href="#skills" style="color: white">Skills</a></li>
+      <li><a href="#projects" style="color: white">Projects</a></li>
+      <li><a href="#inquiry" style="color: white">Inquiry</a></li>
+    </ul>
+  </nav>
+
+  <main style="color: white">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Hello! I’m Keanu. I’m all about web development, coding, and building apps that actually make an impact. I have a knack for solving problems, whether it’s academic challenges, technical issues, or helping businesses refine their brand. At the end of the day, I’m driven by one thing: using technology and creativity to empower people and make ideas real.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Web Development</li>
+        <li>Business Branding & Service Packaging</li>
+        <li>Python Troubleshooting & Simulations</li>
+        <li>Interactive App & Game Development</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <article>
+        <h3>Keanu WebSolutions</h3>
+        <p>A web development business helping small businesses with branding, websites, and service design.</p>
+      </article>
+    </section>
+
+    <section id="inquiry">
+      <h2>📋 Business Inquiry</h2>
+      <p>Submit your inquiry and we'll get back to you soon</p>
+
+      <article>
+        <form id="inquiryForm">
+          <div class="form-group">
+            <label for="businessName">Business Name *</label>
+            <input
+              type="text"
+              id="businessName"
+              name="businessName"
+              required
+              placeholder="Your Business Name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="businessNumber">Phone Number *</label>
+            <input
+              type="tel"
+              id="businessNumber"
+              name="businessNumber"
+              required
+              placeholder="(555) 123-4567"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="inquiry">Inquiry Message *</label>
+            <textarea
+              id="inquiry"
+              name="inquiry"
+              required
+              placeholder="Tell us about your inquiry..."
+            ></textarea>
+          </div>
+
+          <button type="submit">Submit Inquiry</button>
+          <div class="loading" id="loading">Submitting...</div>
+        </form>
+
+        <div class="message" id="message"></div>
+      </article>
+    </section>
+
+    <section class="inquiries-section" id="inquiriesSection" style="display: none;">
+      <h2>Recent Inquiries</h2>
+      <div id="inquiriesList"></div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:keanuwebsolutions@gmail.com">keanuwebsolutions@gmail.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Keanu WebSolutions</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("inquiryForm");
+    const messageDiv = document.getElementById("message");
+    const loading = document.getElementById("loading");
+    const inquiriesSection = document.getElementById("inquiriesSection");
+    const inquiriesList = document.getElementById("inquiriesList");
+
+    // Submit form
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        businessName: document.getElementById("businessName").value,
+        email: document.getElementById("email").value,
+        businessNumber: document.getElementById("businessNumber").value,
+        inquiry: document.getElementById("inquiry").value,
+      };
+
+      loading.classList.add("active");
+      messageDiv.className = "message";
+
+      try {
+        const response = await fetch("/api/inquiries", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          messageDiv.className = "message success";
+          messageDiv.textContent =
+            "✓ " + data.message + " (ID: " + data.id + ")";
+          form.reset();
+          loadInquiries();
+        } else {
+          messageDiv.className = "message error";
+          messageDiv.textContent = "✗ Error: " + data.error;
+        }
+      } catch (error) {
+        messageDiv.className = "message error";
+        messageDiv.textContent =
+          "✗ Connection error: " +
+          error.message +
+          ". Make sure the server is running!";
+      } finally {
+        loading.classList.remove("active");
+      }
+    });
+
+    // Load inquiries
+    async function loadInquiries() {
+      try {
+        const response = await fetch("/api/inquiries");
+        const inquiries = await response.json();
+
+        if (inquiries.length > 0) {
+          inquiriesSection.style.display = "block";
+          inquiriesList.innerHTML = inquiries
+            .map(
+              (inquiry) => `
+            <div class="inquiry-item">
+              <h4>${inquiry.business_name}</h4>
+              <p><strong>Email:</strong> ${inquiry.email}</p>
+              <p><strong>Phone:</strong> ${inquiry.business_number}</p>
+              <p><strong>Message:</strong> ${inquiry.inquiry}</p>
+              <p class="timestamp">Submitted: ${new Date(inquiry.created_at).toLocaleString()}</p>
+            </div>
+          `
+            )
+            .join("");
+        }
+      } catch (error) {
+        console.log("Could not load inquiries");
+      }
+    }
+
+    // Load inquiries on page load
+    loadInquiries();
+  </script>
+</body>
+</html>
