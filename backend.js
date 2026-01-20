@@ -11,6 +11,11 @@ app.use(bodyParser.json());
 // Serve static files from the current directory
 app.use(express.static(__dirname));
 
+// Serve index.html for root path
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
 // Database connection
 const dbPath = path.join(__dirname, "inquiries.db");
 const db = new sqlite3.Database(dbPath, (err) => {
