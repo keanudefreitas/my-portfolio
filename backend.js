@@ -99,7 +99,11 @@ app.get("/api/inquiries/:id", (req, res) => {
 
 // Serve index.html for all other routes (SPA fallback)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"), (err) => {
+    if (err) {
+      res.status(500).send("Error loading page");
+    }
+  });
 });
 
 // Start server
