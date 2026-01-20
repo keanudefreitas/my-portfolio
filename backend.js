@@ -2,8 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 // Serve static files from the current directory
@@ -96,9 +98,9 @@ app.get("/api/inquiries/:id", (req, res) => {
 });
 
 // Start server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
   console.log("POST /api/inquiries - Submit an inquiry");
   console.log("GET /api/inquiries - Get all inquiries");
   console.log("GET /api/inquiries/:id - Get inquiry by ID");

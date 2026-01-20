@@ -474,7 +474,8 @@
       messageDiv.className = "message";
 
       try {
-        const response = await fetch("/api/inquiries", {
+        const apiBase = window.location.hostname === 'localhost' ? 'http://localhost:3000' : window.location.origin;
+        const response = await fetch(apiBase + "/api/inquiries", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -508,7 +509,8 @@
     // Load inquiries
     async function loadInquiries() {
       try {
-        const response = await fetch("/api/inquiries");
+        const apiBase = window.location.hostname === 'localhost' ? 'http://localhost:3000' : window.location.origin;
+        const response = await fetch(apiBase + "/api/inquiries");
         const inquiries = await response.json();
 
         if (inquiries.length > 0) {
